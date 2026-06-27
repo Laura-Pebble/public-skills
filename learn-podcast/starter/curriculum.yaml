@@ -1,0 +1,11 @@
+# Learn Podcast — structured curriculum (optional).
+#
+# Only used when the user picked the Structured curriculum shape in the interview.
+# The orchestrator picks the next `status: planned` lesson each run and marks it
+# `shipped` afterwards. Add new lessons here at any time; they queue automatically.
+#
+# Delete this file to switch to Organic mode (every episode is whatever's freshest
+# in the sources).
+
+lessons:
+{{CURRICULUM_YAML}}

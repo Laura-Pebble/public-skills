@@ -1,0 +1,46 @@
+name: learn-podcast
+
+on:
+  # DISABLED BY DEFAULT — uncomment after one successful local run.
+  # schedule:
+  #   - cron: "{{CRON}}"   # {{CRON_HUMAN}}
+  workflow_dispatch:
+
+permissions:
+  contents: write          # write back curriculum.yaml lesson status
+
+jobs:
+  episode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install -r learn_podcast/requirements.txt
+          # Provider SDK — match config.yaml → llm.provider
+          pip install {{PROVIDER_PIP_PACKAGE}}
+          # Uncomment if delivery.podcast_feed = true AND uploading to S3
+          # pip install boto3
+
+      - name: Generate one episode
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+          S3_ACCESS_KEY:     ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_KEY:     ${{ secrets.S3_SECRET_KEY }}
+        run: python -m learn_podcast.pipeline.main
+
+      - name: Commit lesson status / outputs
+        run: |
+          git config user.name  "learn-podcast-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add learn_podcast/curriculum.yaml learn_podcast/output/ 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Episode $(date -u +%Y-%m-%d)"
+          git push || true
