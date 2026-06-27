@@ -1,0 +1,11 @@
+# Pending sources — feeds that don't exist yet.
+#
+# A weekly job (python -m learn_podcast.pipeline.pending) queries iTunes
+# Search and PodcastIndex for each entry. On a confidence match ≥ min_confidence
+# AND a live feed, the entry is promoted into config.yaml's sources list and
+# removed from here.
+#
+# This file may be empty. Add entries when you know a person is about to launch
+# a podcast or newsletter you want to track.
+
+{{PENDING_SOURCES_YAML}}
