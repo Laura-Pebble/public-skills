@@ -16,6 +16,7 @@ Learn more at <https://agentskills.io/specification.md>.
 |---|---|
 | [`ai-research-verification`](skills/ai-research-verification/) | Six-check verification protocol for AI-generated research — catches fabricated sources, distorted claims, and single-thread findings before they land in a downstream document. |
 | [`avoiding-ai-tells`](skills/avoiding-ai-tells/) | Strips the patterns that make prose read as AI-generated — giveaway openers, filler verbs, buzzword adjectives, hedging cadences, chatbot residue — against a research-backed catalog of ~80 tells, each with a concrete replacement. Ships an optional linter to scan a draft or validate the catalog. |
+| [`learn-podcast`](skills/learn-podcast/) | Builds a personalized teaching podcast on any topic — interviews you on topic, level, and trusted sources, then scaffolds a source-first audio pipeline (curate → grounded script → claim-verify → text-to-speech MP3 → optional podcast feed) into your repo with a scheduled GitHub Actions workflow. |
 
 More skills will land here over time.
 
