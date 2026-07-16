@@ -15,6 +15,7 @@ Learn more at <https://agentskills.io/specification.md>.
 | Skill | What it does |
 |---|---|
 | [`ai-research-verification`](skills/ai-research-verification/) | Six-check verification protocol for AI-generated research — catches fabricated sources, distorted claims, and single-thread findings before they land in a downstream document. |
+| [`avoiding-ai-tells`](skills/avoiding-ai-tells/) | Strips the patterns that make prose read as AI-generated — giveaway openers, filler verbs, buzzword adjectives, hedging cadences, chatbot residue — against a research-backed catalog of ~80 tells, each with a concrete replacement. Ships an optional linter to scan a draft or validate the catalog. |
 
 More skills will land here over time.
 
